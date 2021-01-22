@@ -4,7 +4,7 @@ import tensorflow as tf
 import os
 from tensorflow.python.saved_model import tag_constants
 
-N_RUN = 100
+from config import N_RUN
 
 def benchmark_saved_model(SAVED_MODEL_DIR):
 
@@ -17,7 +17,7 @@ def benchmark_saved_model(SAVED_MODEL_DIR):
     x = tf.random.uniform([1,224,224,3])
     prediction_scores = infer(x) # 초기화에 시간 오래 걸리는듯
     start_time = time.time()
-    for i in range(50):
+    for i in range(N_RUN):
         prediction_scores = infer(x)
 
     # from download_and_run import build_model
@@ -27,7 +27,7 @@ def benchmark_saved_model(SAVED_MODEL_DIR):
     #     pred = model.predict(x)
     
        
-    print(f"speed = {time.time()-start_time}")
+    print(f"speed = {(time.time()-start_time)/N_RUN}")
     
 
 if __name__ == "__main__":

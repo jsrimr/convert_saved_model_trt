@@ -1,7 +1,7 @@
 import itertools
 import os
 
-import matplotlib.pylab as plt
+# import matplotlib.pylab as plt
 import numpy as np
 
 import tensorflow as tf
@@ -94,9 +94,9 @@ def inference(model, valid_generator):
     x, y = next(valid_generator)
     image = x[0, :, :, :]
     true_index = np.argmax(y[0])
-    plt.imshow(image)
-    plt.axis('off')
-    plt.show()
+    # plt.imshow(image)
+    # plt.axis('off')
+    # plt.show()
 
     # Expand the validation image to (1, 224, 224, 3) before predicting the label
     prediction_scores = model.predict(np.expand_dims(image, axis=0))
