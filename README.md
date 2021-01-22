@@ -3,15 +3,19 @@
 
 ## Prepare
 config.py 수정
+
 ## step1 : download SAVED_MODEL from TF_HUB
 
 ```python
-python3 download_and_run.py
+PYTHONPATH=. python3 classification/download_and_run.py
+#or 
+PYTHONPATH=. python3 detection_model.py
 ```
 
 ## step2 : convert downloaded model
 ```
-python3 convert_to_trt.py
+# ex)
+python convert_to_trt.py --SAVED_MODEL_DIR=saved_model_detection
 ```
 
 ## step3 : benchmark

@@ -10,10 +10,21 @@ from tensorflow.python.compiler.tensorrt import trt_convert as trt
 from tensorflow.python.saved_model import tag_constants
 # train_generator, valid_generator = prepare_data()
 
-from config import BATCH_SIZE, SAVED_MODEL_DIR, FP16_SAVED_MODEL_DIR
+# from config import BATCH_SIZE, SAVED_MODEL_DIR, FP16_SAVED_MODEL_DIR
 
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--BATCH_SIZE", type=int, default=32)
+parser.add_argument("--SAVED_MODEL_DIR", type=str, help="Where to load model")
+# parser.add_argument("--FP16_SAVED_MODEL_DIR", type=str, help="Where to save trt converted model")
+args = parser.parse_args()
+
+SAVED_MODEL_DIR = args.SAVED_MODEL_DIR
+FP16_SAVED_MODEL_DIR = args.SAVED_MODEL_DIR+"_TFTRT_FP16/1"
+
+import os
 if __name__ == "__main__":
-
+    os.system(f"rm -rf {FP16_SAVED_MODEL_DIR}")
     #old version tensorRT
     conversion_params = trt.DEFAULT_TRT_CONVERSION_PARAMS._replace(
     precision_mode=trt.TrtPrecisionMode.FP16)

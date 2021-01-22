@@ -1,4 +1,12 @@
+import tensorflow as tf
+import numpy as np
+from six import BytesIO
+from PIL import Image, ImageDraw, ImageFont
+from six.moves.urllib.request import urlopen
 # @title Run this!!
+
+def save_model(model, saved_model_path = "saved_model"):
+    tf.saved_model.save(model, saved_model_path)
 
 def load_image_into_numpy_array(path):
   """Load an image from file into a numpy array.

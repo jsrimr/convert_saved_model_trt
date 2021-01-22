@@ -82,8 +82,7 @@ def train(model, train_generator, valid_generator, do_fine_tuning = False):
         validation_data=valid_generator,
         validation_steps=validation_steps).history
 
-def save_model(model, saved_model_path = "saved_model"):
-    tf.saved_model.save(model, saved_model_path)
+from utils import save_model
 
 def get_class_string_from_index(index):
    for class_string, class_index in valid_generator.class_indices.items():
@@ -109,4 +108,4 @@ if __name__ == "__main__":
     model = build_model(n_classes=train_generator.num_classes)
     # train(model, train_generator, valid_generator)
     save_model(model)
-    # inference(model, valid_generator)
+    inference(model, valid_generator)
